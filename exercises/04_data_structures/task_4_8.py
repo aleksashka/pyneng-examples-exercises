@@ -19,3 +19,12 @@
 '''
 
 ip = '192.168.3.1'
+
+octets = ip.split('.')
+
+o1,o2,o3,o4 = [int(oct) for oct in octets]
+
+template = f"""{o1:<8}  {o2:<8}  {o3:<8}  {o4:<8}
+{o1:08b}  {o2:08b}  {o3:08b}  {o4:08b}"""
+
+print(template)

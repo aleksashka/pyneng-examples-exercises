@@ -10,3 +10,9 @@
 '''
 
 mac = 'AAAA:BBBB:CCCC'
+
+res = ''
+for letter in list(mac.replace(':','')):
+    res += bin(int(letter,16)).replace('0b','')
+
+print(res)
