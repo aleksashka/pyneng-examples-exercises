@@ -14,3 +14,19 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+
+ip = input('Enter IP address: ')
+o1 = int(ip.split('.')[0])
+
+if o1 >= 1 and o1 <= 223:
+    ip_type = 'unicast'
+elif o1 >= 224 and o1 <= 239:
+    ip_type = 'multicast'
+elif ip == '255.255.255.255':
+    ip_type = 'local broadcast'
+elif ip == '0.0.0.0':
+    ip_type = 'unassigned'
+else:
+    ip_type = 'unused'
+
+print(ip_type)
