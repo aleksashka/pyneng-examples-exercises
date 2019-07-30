@@ -19,3 +19,21 @@ Mask:
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+
+net_mask = input('Enter network and mask: ')
+net, mask = net_mask.split('/')
+
+o1, o2, o3, o4 = [int(oct) for oct in net.split('.')]
+print_net = f"{o1:<8}  {o2:<8}  {o3:<8}  {o4:<8}\n{o1:08b}  {o2:08b}  {o3:08b}  {o4:08b}"
+
+maski = int(mask)
+maskb = '1' * maski + ( '0' * ( 32 - maski ) )
+o1 = int(maskb[0:8],2)
+o2 = int(maskb[8:16],2)
+o3 = int(maskb[16:24],2)
+o4 = int(maskb[24:32],2)
+print_mask = f"{o1:<8}  {o2:<8}  {o3:<8}  {o4:<8}\n{o1:08b}  {o2:08b}  {o3:08b}  {o4:08b}"
+
+print('Network:\n' + print_net)
+print()
+print('Mask:\n/' + mask + '\n' + print_mask)
