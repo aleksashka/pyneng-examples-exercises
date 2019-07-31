@@ -22,3 +22,17 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 '''
+
+template = ' {:<4} {:>16}   {}'
+with open('CAM_table.txt', 'r') as src:
+    lines = src.readlines()
+    flines = []
+    for line in lines:
+        if 'DYNAMIC' in line:
+            vmi = line.split()
+            vmi.remove('DYNAMIC')
+            vmi[0] = int(vmi[0])
+            flines.append(vmi)
+    flines.sort()
+    for line in flines:
+        print(template.format(*line))

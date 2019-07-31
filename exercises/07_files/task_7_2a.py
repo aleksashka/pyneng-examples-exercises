@@ -13,3 +13,13 @@
 '''
 
 ignore = ['duplex', 'alias', 'Current configuration']
+
+from sys import argv
+with open(argv[1], 'r') as f:
+    for line in f:
+        skip = False;
+        for item in ignore:
+            if item in line:
+                skip = True
+        if not skip and line[0] != '!':
+            print(line, end='')

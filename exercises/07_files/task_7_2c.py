@@ -17,3 +17,13 @@
 '''
 
 ignore = ['duplex', 'alias', 'Current configuration']
+
+from sys import argv
+with open(argv[1], 'r') as src, open(argv[2], 'w') as dst:
+    for line in src:
+        skip = False;
+        for item in ignore:
+            if item in line:
+                skip = True
+        if not skip:
+            dst.write(line)

@@ -12,3 +12,8 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+from sys import argv
+with open(argv[1], 'r') as f:
+    for line in f:
+        if line[0] != '!':
+            print(line, end='')

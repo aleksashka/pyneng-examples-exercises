@@ -17,3 +17,10 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 '''
+template = ' {:4} {:>16}   {}'
+with open('CAM_table.txt', 'r') as src:
+    for line in src:
+        if 'DYNAMIC' in line:
+            vmi = line.split()
+            vmi.remove('DYNAMIC')
+            print(template.format(*vmi))
