@@ -42,3 +42,27 @@ access_config = {
 
 
 
+def generate_access_config(intf_vlan_mapping, access_template, psecurity=None):
+    '''
+    intf_vlan_mapping - словарь с соответствием интерфейс-VLAN такого вида:
+        {'FastEthernet0/12':10,
+         'FastEthernet0/14':11,
+         'FastEthernet0/16':17}
+    access_template - список команд для порта в режиме access
+
+    Возвращает список всех портов в режиме access с конфигурацией на основе шаблона
+    '''
+    result = []
+    for intf, vlan in intf_vlan_mapping.items():
+        result.append("interface {}".format(intf))
+        for line in access_template:
+            if "vlan" in line:
+                result.append(str(line) + " " + str(vlan))
+            else:
+                result.append(str(line))
+        if psecurity:
+            for line in psecurity:
+                result.append(str(line))
+    return result
+
+generate_access_config(access_config, access_mode_template, port_security_template)
