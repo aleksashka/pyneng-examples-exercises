@@ -41,3 +41,23 @@ Cгенерировать топологию, которая соответст�
 
 '''
 
+import task_11_1
+import draw_network_graph
+
+def create_network_map(filenames):
+    result = {}
+    for filename in filenames:
+        with open(filename, 'r') as src:
+            tmp_results = task_11_1.parse_cdp_neighbors(src.read())
+            for tmp_result in tmp_results:
+                #import pdb; pdb.set_trace()
+                if not (tmp_result in result.keys() or tmp_result in result.values() ):
+                    result[tmp_result] = tmp_results[tmp_result]
+    return result
+
+if __name__ == '__main__':
+    topology = create_network_map(['sh_cdp_n_sw1.txt',
+                                   'sh_cdp_n_r1.txt' ,
+                                   'sh_cdp_n_r2.txt' ,
+                                   'sh_cdp_n_r3.txt'  ])
+    draw_network_graph.draw_topology(topology, 'task_11_2_topology_my')
